@@ -1,0 +1,22 @@
+.alert-item { padding: 20rpx 24rpx; }
+
+.dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  background: #ff8a3d;
+}
+
+.alert-title {
+  font-size: 29rpx;
+  font-weight: 600;
+}
+
+.snap {
+  width: 100%;
+  margin-top: 14rpx;
+  border-radius: 12rpx;
+  background: #000;
+}
+
+.wx-line { margin-top: 6rpx; }

@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/preview/preview",
+    "pages/files/files",
+    "pages/alerts/alerts",
+    "pages/stats/stats",
+    "pages/settings/settings"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#151a21",
+    "navigationBarTitleText": "智能课堂 AI 摄像头",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#0f1419"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#8a94a6",
+    "selectedColor": "#ff8a3d",
+    "backgroundColor": "#151a21",
+    "borderStyle": "black",
+    "list": [
+      { "pagePath": "pages/preview/preview", "text": "实时预览" },
+      { "pagePath": "pages/files/files", "text": "录制文件" },
+      { "pagePath": "pages/alerts/alerts", "text": "行为告警" },
+      { "pagePath": "pages/stats/stats", "text": "课堂统计" }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,77 @@
+page {
+  background: #0f1419;
+  color: #e8eef5;
+  font-size: 28rpx;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 24rpx 24rpx 160rpx;
+  box-sizing: border-box;
+}
+
+/* 卡片 */
+.card {
+  background: #171d25;
+  border: 1rpx solid #26303b;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-bottom: 18rpx;
+}
+
+/* 按钮 */
+.btn {
+  background: #26303b;
+  color: #e8eef5;
+  border-radius: 14rpx;
+  padding: 18rpx 24rpx;
+  font-size: 27rpx;
+  line-height: 1.2;
+  text-align: center;
+  border: none;
+}
+.btn::after { border: none; }
+.btn.primary { background: #ff8a3d; color: #1a1005; font-weight: 600; }
+.btn.danger { background: #3a2020; color: #ff8080; }
+.btn.ghost { background: transparent; border: 1rpx solid #3a4653; color: #9fb0c3; }
+.btn.block { width: 100%; }
+.btn.small { padding: 12rpx 20rpx; font-size: 25rpx; }
+.btn[disabled] { opacity: 0.45; }
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  flex-wrap: wrap;
+}
+
+/* 提示条 */
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12rpx;
+  padding: 18rpx 20rpx;
+  border-radius: 14rpx;
+  font-size: 25rpx;
+  line-height: 1.5;
+  margin-bottom: 20rpx;
+}
+.notice.error { background: #2c1919; color: #ff9b9b; }
+.notice.warn { background: #2c2417; color: #ffcf8a; }
+.notice.info { background: #16222c; color: #8fc6f5; }
+.notice.ok { background: #16291f; color: #86e0a8; }
+
+.muted { color: #8a94a6; }
+.tiny { font-size: 23rpx; }
+.empty {
+  text-align: center;
+  color: #6d7787;
+  padding: 80rpx 20rpx;
+  font-size: 27rpx;
+}

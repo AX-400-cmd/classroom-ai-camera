@@ -1,0 +1,71 @@
+<view class="page">
+  <view wx:if="{{err}}" class="notice error">
+    <text>{{err}}　可到「设置」检查服务地址</text>
+  </view>
+
+  <view class="card frame-card">
+    <view class="frame-wrap">
+      <image
+        class="frame {{active === 'A' ? 'show' : ''}}"
+        src="{{bufA}}"
+        mode="aspectFit"
+        data-buf="A"
+        bindload="onBufLoad"
+      />
+      <image
+        class="frame {{active === 'B' ? 'show' : ''}}"
+        src="{{bufB}}"
+        mode="aspectFit"
+        data-buf="B"
+        bindload="onBufLoad"
+      />
+      <view wx:if="{{!bufA && !bufB}}" class="frame-ph muted">正在连接画面…</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="stat-row">
+      <view class="stat">
+        <text class="stat-num">{{status.behavior_persons || 0}}</text>
+        <text class="stat-label">画面人数</text>
+      </view>
+      <view class="stat">
+        <text class="stat-num warn">{{(status.behavior_phone || 0) + (status.behavior_sleep || 0)}}</text>
+        <text class="stat-label">注意力不集中</text>
+      </view>
+      <view class="stat">
+        <text class="stat-num {{status.recording ? 'on' : ''}}">{{status.recording ? '录制中' : '待机'}}</text>
+        <text class="stat-label">录制状态</text>
+      </view>
+    </view>
+    <view class="tiny muted" wx:if="{{status}}">
+      检测：{{status.behavior_enabled ? (status.behavior_running ? '运行中' : '已停止') : '未启用'}}
+      <text wx:if="{{status.behavior_error}}"> · {{status.behavior_error}}</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">画面刷新</view>
+    <view class="row">
+      <button
+        wx:for="{{intervals}}"
+        wx:key="value"
+        class="btn small {{interval === item.value ? 'primary' : 'ghost'}}"
+        data-value="{{item.value}}"
+        bindtap="switchInterval"
+      >{{item.label}}</button>
+      <button class="btn small ghost" bindtap="togglePlay">{{playing ? '暂停' : '继续'}}</button>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">操作</view>
+    <view class="row">
+      <button class="btn {{status.recording ? 'danger' : 'primary'}}" bindtap="onRecord" disabled="{{loading}}">
+        {{status.recording ? '停止录制' : '开始录制'}}
+      </button>
+      <button class="btn ghost" bindtap="onSnapshot">保存截图</button>
+      <button class="btn ghost" bindtap="goSettings">服务设置</button>
+    </view>
+  </view>
+</view>

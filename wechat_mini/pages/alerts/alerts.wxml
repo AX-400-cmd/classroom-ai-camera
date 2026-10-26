@@ -1,0 +1,63 @@
+<view class="page">
+  <view class="card">
+    <view class="card-title">微信告警推送</view>
+
+    <view wx:if="{{wxErr}}" class="notice error">{{wxErr}}</view>
+
+    <view wx:if="{{wx && !wx.configured}}" class="notice warn">
+      后端 wechat.json 还没配置完整（appid / secret / template_id），推送不会生效。
+    </view>
+
+    <view wx:if="{{wx && wx.configured}}" class="wx-line tiny muted">
+      订阅者 {{wx.subscribers}} 人 · 剩余额度 {{wx.quota_total}} 条 ·
+      推送{{wx.active ? '已启用' : '未启用'}}
+    </view>
+    <view wx:if="{{wx && wx.last_error}}" class="notice error tiny">{{wx.last_error}}</view>
+
+    <view class="row" style="margin-top:16rpx">
+      <button class="btn primary small" bindtap="onSubscribe" disabled="{{subscribing}}">
+        {{subscribing ? '授权中…' : '开启告警推送'}}
+      </button>
+      <button class="btn ghost small" bindtap="onUnsubscribe">取消订阅</button>
+      <button class="btn ghost small" bindtap="onTestPush">发测试推送</button>
+    </view>
+    <view class="tiny muted" style="margin-top:14rpx">
+      订阅消息是一次性授权：每授权一次可推送一条。建议每节课前点一次「开启告警推送」。
+    </view>
+  </view>
+
+  <view wx:if="{{err}}" class="notice error">{{err}}</view>
+
+  <view class="card">
+    <view class="row" style="justify-content:space-between">
+      <text class="card-title" style="margin:0">告警记录（{{alerts.length}}）</text>
+      <view class="row">
+        <button class="btn ghost small" bindtap="onTestAlert">测试告警</button>
+        <button class="btn ghost small" bindtap="onClear">清空</button>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{alerts.length === 0}}" class="empty">暂无告警</view>
+
+  <view wx:for="{{alerts}}" wx:key="id" class="card alert-item">
+    <view class="row" style="justify-content:space-between">
+      <view class="row">
+        <view class="dot"></view>
+        <text class="alert-title">{{item.detail}}</text>
+      </view>
+      <text class="tiny muted">{{item.time}}</text>
+    </view>
+    <view class="tiny muted" style="margin-top:8rpx">
+      持续 {{item.seconds}} 秒 · 置信度 {{item.score}}
+    </view>
+    <image
+      wx:if="{{item.snapshot}}"
+      class="snap"
+      src="{{item.snapshot}}"
+      mode="widthFix"
+      data-url="{{item.snapshot}}"
+      bindtap="previewImage"
+    />
+  </view>
+</view>

@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+
+  "_comment": "appid / secret / template_id 三项可留空或写成 ENV，改由环境变量注入（推荐）：WECHAT_APPID、WECHAT_APP_SECRET、WECHAT_TEMPLATE_ID。这样密钥不会明文落盘，服务化部署时用 Environment= 注入即可。",
+
+  "appid": "ENV",
+  "secret": "ENV",
+  "template_id": "ENV",
+
+  "template_fields": {
+    "thing1": "title",
+    "thing2": "detail",
+    "time3": "time"
+  },
+
+  "page": "pages/alerts/alerts",
+  "state": "formal",
+  "min_interval": 60.0,
+  "store": "subscribers.json"
+}

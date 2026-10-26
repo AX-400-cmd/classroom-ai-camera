@@ -1,0 +1,50 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+
+# ===== 密钥与本地配置（切勿提交） =====
+.env
+.env.*
+*.env
+wechat.json
+subscribers.json
+*.db
+*.sqlite
+*.sqlite3
+
+# ===== 隐私数据：真实课堂录像 / 告警截图 / 统计库 =====
+outputs/
+
+# ===== 个人 / 学术文档（含简历、论文提纲，不随代码开源） =====
+work/
+
+# ===== Flutter / Dart =====
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+/build/
+coverage/
+*.iml
+.idea/
+/android/app/debug/
+/android/app/profile/
+/android/app/release/
+*.jks
+*.keystore
+
+# ===== 微信小程序（开发者工具本地文件） =====
+project.private.config.json
+node_modules/
+
+# ===== 日志 / 系统 =====
+*.log
+.DS_Store
+Thumbs.db

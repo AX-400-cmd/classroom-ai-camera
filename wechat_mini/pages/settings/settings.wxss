@@ -1,0 +1,19 @@
+.input {
+  background: #0f1419;
+  border: 1rpx solid #2c3644;
+  border-radius: 12rpx;
+  padding: 18rpx 20rpx;
+  color: #e8eef5;
+  font-size: 27rpx;
+}
+
+.ph { color: #4d5766; }
+
+.step {
+  font-size: 25rpx;
+  line-height: 1.7;
+  color: #b9c5d3;
+  margin-bottom: 12rpx;
+}
+
+.hl { color: #ff8a3d; }

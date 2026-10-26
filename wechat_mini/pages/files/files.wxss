@@ -1,0 +1,42 @@
+.file-item { padding: 20rpx; }
+
+.file-main {
+  display: flex;
+  gap: 20rpx;
+}
+
+.thumb {
+  width: 200rpx;
+  height: 128rpx;
+  border-radius: 12rpx;
+  background: #000;
+  flex-shrink: 0;
+}
+
+.file-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+  min-width: 0;
+}
+
+.file-name {
+  font-size: 27rpx;
+  font-weight: 600;
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tag {
+  align-self: flex-start;
+  background: #3a2020;
+  color: #ff8080;
+  font-size: 21rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  margin-top: 4rpx;
+}

@@ -1,0 +1,32 @@
+<view class="page">
+  <view wx:if="{{err}}" class="notice error">{{err}}</view>
+
+  <view class="card">
+    <view class="row">
+      <button class="btn small {{kind === 'all' ? 'primary' : 'ghost'}}" data-kind="all" bindtap="switchKind">全部</button>
+      <button class="btn small {{kind === 'video' ? 'primary' : 'ghost'}}" data-kind="video" bindtap="switchKind">视频</button>
+      <button class="btn small {{kind === 'image' ? 'primary' : 'ghost'}}" data-kind="image" bindtap="switchKind">图片</button>
+    </view>
+  </view>
+
+  <view wx:if="{{files.length === 0 && !err}}" class="empty">暂无录制文件</view>
+
+  <view wx:for="{{files}}" wx:key="name" class="card file-item">
+    <view class="file-main">
+      <image class="thumb" src="{{item.thumb}}" mode="aspectFill" data-url="{{item.url}}"
+             data-kind="{{item.kind}}" data-thumb="{{item.thumb}}" bindtap="onOpen" />
+      <view class="file-info">
+        <text class="file-name">{{item.name}}</text>
+        <text class="tiny muted">{{item.sizeText}} · {{item.modified}}</text>
+        <view wx:if="{{item.recording}}" class="tag">录制中</view>
+      </view>
+    </view>
+    <view class="row" style="margin-top:16rpx">
+      <button class="btn ghost small" data-url="{{item.url}}" data-kind="{{item.kind}}"
+              data-thumb="{{item.thumb}}" bindtap="onOpen">打开</button>
+      <button class="btn ghost small" data-url="{{item.url}}" data-kind="{{item.kind}}"
+              bindtap="onSave" disabled="{{loading}}">保存到相册</button>
+      <button class="btn danger small" data-name="{{item.name}}" bindtap="onDelete">删除</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,58 @@
+<view class="page">
+  <view class="card">
+    <view class="card-title">服务地址（HTTPS 域名）</view>
+    <input
+      class="input"
+      value="{{input}}"
+      placeholder="https://your-domain.example"
+      placeholder-class="ph"
+      bindinput="onInput"
+    />
+    <view class="row" style="margin-top:18rpx">
+      <button class="btn primary small" bindtap="onSave">保存</button>
+      <button class="btn ghost small" bindtap="onTest" disabled="{{testing}}">
+        {{testing ? '测试中…' : '测试连接'}}
+      </button>
+      <button class="btn ghost small" bindtap="onCopyDomain">复制地址</button>
+    </view>
+    <view wx:if="{{result}}" class="notice {{resultOk ? 'ok' : 'error'}}" style="margin-top:18rpx">
+      {{result}}
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">访问令牌（可选）</view>
+    <input
+      class="input"
+      value="{{tokenInput}}"
+      password="{{true}}"
+      placeholder="后端开启鉴权后填写，未开启留空"
+      placeholder-class="ph"
+      bindinput="onTokenInput"
+    />
+    <view class="row" style="margin-top:18rpx">
+      <button class="btn primary small" bindtap="onSaveToken">保存令牌</button>
+    </view>
+    <view class="step tiny muted" style="margin-top:12rpx">
+      后端启动参数加了 --api-token 或设置了 CLASSROOM_API_TOKEN 时才需要填；
+      不填则不会发送任何鉴权头，与未开启鉴权的服务行为一致。
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">正式发布前要做的三件事</view>
+    <view class="step">1. 电脑端服务挂到 HTTPS 域名（内网穿透或部署上云）。</view>
+    <view class="step">2. 微信公众平台 → 开发 → 开发管理 → 服务器域名：
+      把域名同时加进 <text class="hl">request 合法域名</text> 和
+      <text class="hl">downloadFile 合法域名</text>（画面、封面、视频走 downloadFile）。</view>
+    <view class="step">3. 电脑端填好 wechat.json 的 appid / secret / template_id，
+      启动服务时加 <text class="hl">--wx-config wechat.json</text>。</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">调试阶段</view>
+    <view class="step">微信开发者工具 → 详情 → 本地设置 → 勾选「不校验合法域名、web-view、TLS 版本」，
+      就可以直接用局域网 http://192.168.x.x:8765 调试，无需域名。</view>
+    <view class="step tiny muted">真机预览需在小程序后台把你的微信号设为体验成员。</view>
+  </view>
+</view>

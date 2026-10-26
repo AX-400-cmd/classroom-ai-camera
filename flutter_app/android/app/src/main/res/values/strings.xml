@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 通知渠道兜底文案（Dart 侧创建渠道时也会传同名字符串） -->
+    <string name="notification_channel_id">classroom_alerts</string>
+    <string name="notification_channel_name">课堂行为告警</string>
+    <string name="notification_channel_description">学生玩手机 / 打瞌睡提醒</string>
+</resources>

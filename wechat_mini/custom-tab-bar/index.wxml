@@ -1,0 +1,12 @@
+<view class="tabbar">
+  <view
+    wx:for="{{list}}"
+    wx:key="path"
+    class="tabbar-item {{selected === index ? 'active' : ''}}"
+    data-path="{{item.path}}"
+    bindtap="switchTab"
+  >
+    <view class="dot"></view>
+    <text class="label">{{item.text}}</text>
+  </view>
+</view>

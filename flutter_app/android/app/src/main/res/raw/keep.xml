@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  通知图标只在 Dart 代码里以字符串形式引用（编译期没有引用），
+  AGP/R8 会把它当无用资源移除或重命名（release 构建尤其如此），
+  结果是通知插件初始化失败、通知永远不显示（插件 README 专门警告过这点）。
+  这里显式保留 drawable / raw，位置按插件官方示例放在 res/raw/。
+-->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@drawable/*,@raw/*" />

@@ -1,0 +1,19 @@
+# 基础（录制、抓帧、PTZ）
+opencv-python>=4.10
+numpy>=1.26
+
+# 桌面 GUI 入口（web.py 的 --no-open 之外的本地窗口；服务器上可不装）
+PySide6>=6.7
+
+# 云台控制（不接 ONVIF 云台可不装）
+onvif-python>=0.1.6
+
+# 行为检测（--behavior 启用时才需要）
+# ultralytics 会带出 torch；默认 PyPI 装的是 CUDA 版（数 GB）。
+# 服务器无 GPU 时请先单独装 CPU 版，再装本文件其余依赖：
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+#   pip install -r requirements.txt
+ultralytics>=8.1
+
+# 告警留证截图与缩略图
+Pillow>=10.0
