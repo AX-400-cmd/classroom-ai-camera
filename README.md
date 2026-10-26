@@ -4,6 +4,11 @@
 
 > 面向教育场景的行为分析 Demo / 课程设计 / 毕业设计。注重隐私合规：默认不暴露公网，告警留证仅存本地，敏感配置走环境变量。
 
+[![Build APK](https://github.com/AX-400-cmd/classroom-ai-camera/actions/workflows/build-and-release.yml/badge.svg)](https://github.com/AX-400-cmd/classroom-ai-camera/actions/workflows/build-and-release.yml)
+[![Latest Release](https://img.shields.io/github/v/release/AX-400-cmd/classroom-ai-camera)](https://github.com/AX-400-cmd/classroom-ai-camera/releases)
+[![License: MIT](https://img.shields.io/github/license/AX-400-cmd/classroom-ai-camera)](./LICENSE)
+[![Last Commit](https://img.shields.io/github/last-commit/AX-400-cmd/classroom-ai-camera)](https://github.com/AX-400-cmd/classroom-ai-camera/commits/main)
+
 ## 功能特性
 
 - **行为检测**：玩手机、打瞌睡（基于 YOLOv8 目标 / 姿态检测）
@@ -23,6 +28,18 @@
 | `wechat_mini/` | 微信小程序端 |
 | `deploy/` | Windows 无人值守：看门狗、清理、开机自启 |
 | `models/` | YOLOv8 权重（来自 Ultralytics） |
+
+### 系统架构
+
+```mermaid
+flowchart LR
+    Cam[摄像头 / RTSP / GB28181] --> BE[Python 后端<br/>YOLOv8 检测 + 跟踪]
+    BE -->|实时画面 / 告警| APP[Flutter APP]
+    BE -->|实时画面 / 告警| MP[微信小程序]
+    BE -->|订阅消息| WX[微信通知]
+    BE -->|统计落库| DB[(SQLite 统计库)]
+    APP -->|回看 / 录制| BE
+```
 
 ## 快速开始
 
