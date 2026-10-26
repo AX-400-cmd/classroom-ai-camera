@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>智能课堂 AI 摄像头系统</title>
+  <style>
+    :root {
+      --bg: #0f1729;
+      --card: #18223a;
+      --accent: #4f8cff;
+      --text: #e8edf6;
+      --muted: #9aa7bd;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 56px 24px 80px; }
+    header h1 { font-size: 34px; margin: 0 0 8px; }
+    header p { color: var(--muted); margin: 0 0 28px; font-size: 16px; }
+    .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 36px; }
+    .badge {
+      background: var(--card); color: var(--accent);
+      padding: 4px 12px; border-radius: 999px; font-size: 13px;
+    }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .card {
+      background: var(--card); border-radius: 14px; padding: 20px;
+    }
+    .card h3 { margin: 0 0 8px; color: var(--accent); font-size: 17px; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; }
+    h2 { margin: 44px 0 16px; font-size: 22px; }
+    .links a {
+      display: inline-block; margin: 6px 10px 6px 0;
+      color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent;
+    }
+    .links a:hover { border-bottom-color: var(--accent); }
+    footer { margin-top: 48px; color: var(--muted); font-size: 13px; }
+    @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>智能课堂 AI 摄像头系统</h1>
+      <p>基于 YOLOv8 的课堂行为分析 · 检测玩手机 / 打瞌睡 · 实时预览 · 告警留证</p>
+      <div class="badges">
+        <span class="badge">YOLOv8</span>
+        <span class="badge">Flutter</span>
+        <span class="badge">微信小程序</span>
+        <span class="badge">Python</span>
+        <span class="badge">MIT License</span>
+      </div>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <h3>行为检测</h3>
+        <p>YOLOv8 + 目标跟踪，实时识别学生玩手机、打瞌睡（趴桌 / 低头）。</p>
+      </div>
+      <div class="card">
+        <h3>实时预览与录制</h3>
+        <p>APP 端查看摄像头画面，可按需录制课堂视频留存。</p>
+      </div>
+      <div class="card">
+        <h3>告警留证</h3>
+        <p>异常行为自动截图留证，并可选微信订阅消息推送到教师手机。</p>
+      </div>
+      <div class="card">
+        <h3>课堂统计</h3>
+        <p>注意力、告警次数等数据落库，APP 端以图表可视化呈现。</p>
+      </div>
+    </div>
+
+    <h2>快速开始</h2>
+    <p style="color:var(--muted)">
+      1) 安装依赖 <code>pip install -r requirements.txt</code> &nbsp;
+      2) 启动后端 <code>python -m classroom_camera.api_server --source 0</code> &nbsp;
+      3) 手机安装发行版 APK，填入电脑内网 IP 即可。
+    </p>
+
+    <h2>相关链接</h2>
+    <div class="links">
+      <a href="https://github.com/AX-400-cmd/classroom-ai-camera#readme">README（完整文档）</a>
+      <a href="https://github.com/AX-400-cmd/classroom-ai-camera/releases">发行版 / 下载 APK</a>
+      <a href="https://github.com/AX-400-cmd/classroom-ai-camera/blob/main/BUILD_ANDROID.md">本地打包说明</a>
+      <a href="https://github.com/AX-400-cmd/classroom-ai-camera/blob/main/work/%E4%B8%8A%E7%BA%BF%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88.md">上线部署方案</a>
+    </div>
+
+    <footer>
+      基于 MIT 许可证开源 · 模型权重随仓库提供（遵循 Ultralytics 许可）。
+    </footer>
+  </div>
+</body>
+</html>

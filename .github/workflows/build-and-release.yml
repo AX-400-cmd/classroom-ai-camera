@@ -1,0 +1,51 @@
+name: Build & Release APK
+
+# 打 tag（如 v1.0.0）时自动编译安卓安装包并发布到 Releases。
+# 在 GitHub 服务器（Linux）上构建，路径全为 ASCII，
+# 不会触发本机中文路径下 gradlew 的报错，免去了本地打包的麻烦。
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write   # 需要写权限以创建 Release 并上传资产
+
+jobs:
+  build:
+    name: Build release APK
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.27.x'
+          channel: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        working-directory: flutter_app
+        run: flutter pub get
+
+      - name: Build APK (split per ABI)
+        working-directory: flutter_app
+        run: flutter build apk --release --split-per-abi
+
+      - name: Collect APKs
+        run: |
+          mkdir -p artifacts
+          cp flutter_app/build/app/outputs/flutter-apk/*.apk artifacts/
+          ls -lh artifacts
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: RELEASE_NOTES.md
+          files: artifacts/*.apk
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
