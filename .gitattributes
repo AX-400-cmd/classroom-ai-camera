@@ -1,0 +1,21 @@
+# 统一换行符：仓库内以 LF 存储，检出时按平台转换
+* text=auto eol=lf
+
+# 明确按文本处理
+*.py text
+*.dart text
+*.js text
+*.json text
+*.md text
+*.yaml text
+*.yml text
+*.bat text eol=crlf
+*.gradlew text eol=lf
+
+# 二进制文件不转换
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.mp4 binary
+*.pt binary
+*.jar binary
