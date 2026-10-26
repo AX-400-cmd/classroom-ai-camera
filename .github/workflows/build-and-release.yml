@@ -28,7 +28,7 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'   # 使用最新稳定版，避免写死不存在的版本号导致下载失败
+          flutter-version: '3.47.5'   # 与本地可成功打包的版本一致，避免 Dart 版本差异导致依赖冲突
           cache: true
 
       - name: Accept Android licenses
