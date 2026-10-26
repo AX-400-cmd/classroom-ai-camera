@@ -58,4 +58,68 @@ Web 预览地址：`http://127.0.0.1:8765`
 
 ## 许可证
 
-本项目以 [MIT License](./LICENSE) 开源。
+本项目以 [MIT License](./LICENSE) 开源。社区规范见 [行为准则](./CODE_OF_CONDUCT.md) 与安全策略 [SECURITY.md](./SECURITY.md)。
+
+---
+
+# Intelligent Classroom AI Camera System
+
+A YOLOv8-powered classroom student behavior analysis system. It detects attention-distracting behaviors such as **phone use** and **dozing off**, with live preview, local recording, alert evidence capture, plus a Flutter mobile app, a WeChat mini-program, WeChat notifications, and statistics dashboards.
+
+> A behavior-analysis demo / course project / graduation project for educational scenarios. Privacy-first: not exposed to the public internet by default, alert evidence is stored locally only, and sensitive config is injected via environment variables.
+
+## Features
+
+- **Behavior detection**: phone use, dozing (based on YOLOv8 object / pose detection)
+- **Live preview & local recording**: browser Web UI + MP4 output
+- **Alert evidence**: frames are captured on detection for later review
+- **Multi-platform clients**: Flutter Android app, WeChat mini-program
+- **WeChat notifications** (optional): alert push via subscribe messages
+- **Statistics dashboard**: attention duration, alert counts, etc.
+- **ONVIF PTZ** (optional): auto-pan for ONVIF-capable cameras
+
+## Architecture
+
+| Directory | Description |
+| --- | --- |
+| `classroom_camera/` | Python backend: detection, tracking, Web/API service, WeChat push, stats |
+| `flutter_app/` | Flutter Android app: preview / recording / alerts / stats |
+| `wechat_mini/` | WeChat mini-program client |
+| `deploy/` | Windows unattended tooling: watchdog, cleanup, auto-start |
+| `models/` | YOLOv8 weights (from Ultralytics) |
+
+## Quick Start
+
+### 1. Backend (Python 3.12 required)
+
+```powershell
+cd classroom_camera
+py -3.12 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r ../requirements.txt
+python -m classroom_camera.api_server --source 0 --host 0.0.0.0
+```
+
+Web preview: `http://127.0.0.1:8765`
+API reference: [`APP_API.md`](./APP_API.md).
+
+### 2. Authentication (recommended)
+
+Set the `CLASSROOM_API_TOKEN` environment variable and use the same token when connecting from the app / mini-program to prevent unauthorized access.
+
+### 3. Mobile / Mini-program
+
+- **Flutter**: `flutter pub get` then `flutter run` (Android); packaging see [`BUILD_ANDROID.md`](./BUILD_ANDROID.md).
+- **Mini-program**: import `wechat_mini/` in WeChat DevTools and configure the backend URL and token in settings.
+
+### 4. WeChat notifications (optional)
+
+Copy `wechat.example.json` to `wechat.json`, or inject via env vars `WECHAT_APPID` / `WECHAT_APP_SECRET` / `WECHAT_TEMPLATE_ID`. **Do not commit secrets.**
+
+## Model License
+
+The YOLOv8 weights in `models/` come from [Ultralytics](https://github.com/ultralytics/ultralytics) and follow their license. Free for research / non-commercial use; obtain a separate license for commercial use.
+
+## License
+
+Released under the [MIT License](./LICENSE). Community standards: [Code of Conduct](./CODE_OF_CONDUCT.md) and [Security Policy](./SECURITY.md).
